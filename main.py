@@ -155,9 +155,11 @@ def set_on_exit(_def, *args, **kwargs): # do something on Ctel+C interrupt
 
 if __name__ == "__main__":
     old_cwd = os.getcwd()
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     set_on_exit(os.chdir, old_cwd)
-    try: dir_to_share = os.path.abspath(sys.argv[1], old_cwd)
-    except: dir_to_share = old_cwd
+    if len(sys.argv) > 1:
+        dir_to_share = os.path.abspath(sys.argv[1])
+    else:
+        dir_to_share = old_cwd
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     main(dir_to_share)
 
