@@ -157,7 +157,7 @@ if __name__ == "__main__":
     old_cwd = os.getcwd()
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     set_on_exit(os.chdir, old_cwd)
-    try: dir_to_share = sys.argv[1]
+    try: dir_to_share = os.path.abspath(sys.argv[1], old_cwd)
     except: dir_to_share = old_cwd
     main(dir_to_share)
 
