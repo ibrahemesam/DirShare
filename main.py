@@ -1,10 +1,12 @@
-from asyncio import subprocess
-from logging import root
-import sys; sys.path.append('/home/ibrahem/Desktop/Code/Projects/udf') #import my UDF
+
+import os, sys
+#import my custom modules [add to PATH]
+sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'udf'))
 
 import local_http_server
-import ws, os, mimetypes, time
+import ws, mimetypes, time
 import uuid, time, random, threading
+import subprocess
 class ws_client:
     clients = {}
     def __init__(self):
@@ -67,7 +69,6 @@ class ws_client:
                 except: self.http_servers = {}
                 port = str(ws.get_free_port())
                 cwd = os.path.join(ws_client.root, msg['d'])
-                import subprocess
                 process = subprocess.Popen(
                     ['http-server', '-p', port],
                     cwd=cwd,
@@ -129,7 +130,7 @@ def main(root):
 
     website_port = local_http_server.init_local_http(root='./app', accept_outer_connection=True)
     ws_client.root = root
-    print('website_port:', website_port)
+    print(f'URL: http://localhost:{website_port}')
 
 
     ws_client.http_port = ws.get_free_port()
@@ -141,7 +142,7 @@ def main(root):
         stderr=subprocess.STDOUT,
         stdout=subprocess.DEVNULL
     ) # use nodeJs server to support seeking in html video element
-    print('ws_client.http_port', ws_client.http_port)
+    # print('ws_client.http_port', ws_client.http_port)
 
 def set_on_exit(_def, *args, **kwargs): # do something on Ctel+C interrupt
     import signal
