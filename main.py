@@ -149,7 +149,7 @@ def set_on_exit(_def, *args, **kwargs): # do something on Ctel+C interrupt
     def signal_handler(sig, frame):
         _def(*args, **kwargs)
         # print('on exit')
-        os._exit(0) # terminate 👊💥
+        sys.exit(0) # terminate 👊💥
     signal.signal(signal.SIGINT, signal_handler)
     # signal.pause()
 

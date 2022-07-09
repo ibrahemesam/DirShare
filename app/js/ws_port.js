@@ -1,1 +1,1 @@
-window.ws_port = 1028;
+window.ws_port = 1025;

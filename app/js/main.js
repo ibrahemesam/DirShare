@@ -210,6 +210,9 @@ create_item = (name, type) => {
   item.children[1].children[0].addEventListener("click", def_open_item);
   if (item.children[1].length > 1) {
     item.children[1].children[1].addEventListener("click", (e) => {
+      // if (["audio/mpeg"].includes(type)) {
+      //   return; // do default action of <a>
+      // }
       e.preventDefault();
       window.open(item_url, "Download");
     });
