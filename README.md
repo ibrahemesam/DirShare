@@ -7,6 +7,7 @@ using a custom html, css (:<br>
 Note:-<br>
 you should download my custom python & js modules from: https://github.com/ibrahemesam/udf<br>
 then save them inside a 'udf' folder beside the 'main.py' file<br>
+(inside the root of this repo, do: `git clone https://github.com/ibrahemesam/udf`) <br>
 
 Requirements:-<br>
 `python -m pip install websockets`<br>
